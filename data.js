@@ -34,7 +34,7 @@ const slides = [
                 <p class="text-sm italic text-blue-200">"Tanpa SKPL, developer seperti membangun rumah tanpa gambar arsitek."</p>
             </div>
         `,
-        image: "/public/skpl.png",
+        image: "public/skpl.png",
         icon: "file-text"
     },
 
