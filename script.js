@@ -52,7 +52,7 @@ function renderSlide(index) {
             break;
 
         case 'split':
-            const imgBlock = `<div class="w-full">${generateImage(data.image)}</div>`;
+            { const imgBlock = `<div class="w-full">${generateImage(data.image)}</div>`;
             const textBlock = `
                 <div class="text-left">
                     <div class="flex items-center gap-3 mb-4 text-blue-400">
@@ -70,22 +70,27 @@ function renderSlide(index) {
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full animate-enter">
                     ${data.align === 'right' ? textBlock + imgBlock : imgBlock + textBlock}
                 </div>`;
-            break;
+            break; }
 
         case 'team':
             html = `
-                <div class="w-full text-center animate-enter">
-                    <h2 class="text-4xl font-bold text-white mb-12">${data.title}</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                        ${data.members.map(m => `
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition duration-300 group">
-                                <div class="relative w-24 h-24 mx-auto mb-4">
-                                    <img src="${m.img}" class="w-full h-full rounded-full object-cover border-2 border-slate-600 group-hover:border-blue-500 transition">
+                <div class="w-full text-center animate-enter flex flex-col h-full justify-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-12 shrink-0">${data.title}</h2>
+                    
+                    <div class="overflow-y-auto md:overflow-visible px-2 pb-24 md:pb-0 custom-scroll w-full">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+                            ${data.members.map(m => `
+                                <div class="glass-panel p-4 md:p-6 rounded-2xl hover:bg-slate-800/50 transition duration-300 group flex flex-row md:flex-col items-center gap-4 md:gap-0 text-left md:text-center">
+                                    <div class="relative w-16 h-16 md:w-24 md:h-24 md:mx-auto md:mb-4 shrink-0">
+                                        <img src="${m.img}" class="w-full h-full rounded-full object-cover border-2 border-slate-600 group-hover:border-blue-500 transition shadow-lg">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg md:text-xl font-bold text-white">${m.name}</h3>
+                                        <p class="text-blue-400 text-xs md:text-sm font-semibold uppercase tracking-wider mt-1">${m.role}</p>
+                                    </div>
                                 </div>
-                                <h3 class="text-xl font-bold text-white">${m.name}</h3>
-                                <p class="text-blue-400 text-sm font-semibold uppercase tracking-wider mt-1">${m.role}</p>
-                            </div>
-                        `).join('')}
+                            `).join('')}
+                        </div>
                     </div>
                 </div>`;
             break;
